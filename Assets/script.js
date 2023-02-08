@@ -57,6 +57,8 @@ function currentWeather(lat, lon) {
 // Click event for search button that grabs city input value
 search.addEventListener('click', function () {
     var input = document.querySelector('.userInput').value
+    var cityName = document.querySelector('#cityDisplay')
+    cityName.textContent = input
     console.log(input);
     coordinates(input);
 })
