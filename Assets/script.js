@@ -22,14 +22,31 @@ function currentWeather(lat, lon) {
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
-         var humidity = document.createElement('p')      
-         humidity.textContent=data.main.humidity+ '%'
+            var temp = document.createElement('p')
+            var clouds = document.createElement('p')
+            var humidity = document.createElement('p')
+            var wind = document.createElement('p')
+            var weather = document.createElement('img')
+
+            temp.textContent = data.main.temp
+            document.querySelector('.temp').append(temp);
+
+            clouds.textContent = data.clouds.all + '%'
+            document.querySelector('.clouds').append(clouds);
+
+            humidity.textContent = data.main.humidity + '%'
             document.querySelector('.humidity').append(humidity);
 
+            wind.textContent = data.wind.speed + 'mph'
+            console.log('WIND', data.wind.speed)
+            document.querySelector('.wind').append(wind);
 
+            var weatherIcon = data.weather[0].icon
+            console.log('WEATHERICON', weatherIcon)
 
+            weather.setAttribute('src', 'http://openweathermap.org/img/w/' + weatherIcon + '.png')
 
-
+            document.querySelector('.weatherIcon').append(weather);
         }
         );
 
